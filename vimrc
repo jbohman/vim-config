@@ -15,6 +15,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'wincent/Command-T'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
+Bundle 'Lokaltog/vim-powerline'
 
 "=== general ==================================================================
 
