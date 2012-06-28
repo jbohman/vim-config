@@ -13,9 +13,24 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
+"let g:ctrlp_user_command = 'find %s -type f'
+"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+"let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git/', 'cd %s && git ls-files'],
+    \ 2: ['.hg/', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'LaTeX-Box'
 
 "=== general ==================================================================
 
@@ -46,7 +61,7 @@ set showmatch                   " jump to matching bracket and back when
                                 " inserted
 set matchtime=3                 " time for showmatch
 set wildmenu                    " command line completion
-set wildignore=*.bak,*.pyc,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.JPG,*.PNG
+set wildignore=*.bak,*.pyc,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.JPG,*.PNG,*.git
 set wildmode=list:full
 set ruler                       " show the ruler
 set laststatus=2                " always show status line.
@@ -84,9 +99,11 @@ set smartcase                   " if search contains mixed case, do a case
 
 let mapleader = ","             " use <comma> as leader
 
-noremap           <leader>f <Esc>:CommandT<CR>
-noremap           <leader>F <Esc>:CommandTFlush<CR>
-noremap           <leader>m <Esc>:CommandTBuffer<CR>
+"noremap           <leader>f <Esc>:CommandT<CR>
+"noremap           <leader>F <Esc>:CommandTFlush<CR>
+"noremap           <leader>m <Esc>:CommandTBuffer<CR>
+noremap           <leader>f <Esc>:CtrlP<CR>
+noremap           <leader>m <Esc>:CtrlPBuffer<CR>
 
 map               <leader>t  :tabnew<CR>
 map               <leader>n  :tabnext<CR>
@@ -112,6 +129,7 @@ endfunction
 "=== filetypes ================================================================
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 au BufNewFile,BufRead *.jinja2 set filetype=html
 
 "=== extra ====================================================================
