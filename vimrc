@@ -8,28 +8,34 @@ call vundle#rc()
 
 "=== plugins ==================================================================
 
-Bundle 'gmarik/vundle'                          " vundle
-Bundle 'altercation/vim-colors-solarized'       " solarized
-Bundle 'tpope/vim-fugitive'                     " fugitive
-Bundle 'wincent/Command-T'                      " command-t
-Bundle 'kien/ctrlp.vim'                         " ctrlp
-Bundle 'scrooloose/nerdcommenter'               " nerdcommenter
-Bundle 'ervandew/supertab'                      " supertab
-Bundle 'Lokaltog/vim-powerline'                 " powerline
-Bundle 'LaTeX-Box-Team/LaTeX-Box'               " latex-box
+" vundle
+Bundle 'gmarik/vundle'
+" solarized
+Bundle 'altercation/vim-colors-solarized'
+" fugitive
+Bundle 'tpope/vim-fugitive'
+" command-t
+"Bundle 'wincent/Command-T'
+" ctrlp
+Bundle 'kien/ctrlp.vim'
+" nerdcommenter
+Bundle 'scrooloose/nerdcommenter'
+" supertab
+Bundle 'ervandew/supertab'
+" powerline
+Bundle 'Lokaltog/vim-powerline'
+" latex-box
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 "=== plugin settings ==========================================================
 
 "=== command-t ================================================================
 
-let g:CommandTMaxFiles=20000
-let g:CommandTMaxCachedDirectories=100
+"let g:CommandTMaxFiles=20000
+"let g:CommandTMaxCachedDirectories=100
 
 "=== ctrlp ====================================================================
 
-"let g:ctrlp_user_command = 'find %s -type f'
-"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-"let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_user_command = {
