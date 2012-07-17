@@ -8,12 +8,25 @@ call vundle#rc()
 
 "=== plugins ==================================================================
 
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'                          " vundle
+Bundle 'altercation/vim-colors-solarized'       " solarized
+Bundle 'tpope/vim-fugitive'                     " fugitive
+Bundle 'wincent/Command-T'                      " command-t
+Bundle 'kien/ctrlp.vim'                         " ctrlp
+Bundle 'scrooloose/nerdcommenter'               " nerdcommenter
+Bundle 'ervandew/supertab'                      " supertab
+Bundle 'Lokaltog/vim-powerline'                 " powerline
+Bundle 'LaTeX-Box-Team/LaTeX-Box'               " latex-box
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-fugitive'
-Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
+"=== plugin settings ==========================================================
+
+"=== command-t ================================================================
+
+let g:CommandTMaxFiles=20000
+let g:CommandTMaxCachedDirectories=100
+
+"=== ctrlp ====================================================================
+
 "let g:ctrlp_user_command = 'find %s -type f'
 "let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 "let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
@@ -26,11 +39,10 @@ let g:ctrlp_user_command = {
     \ },
   \ 'fallback': 'find %s -type f'
   \ }
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'LaTeX-Box'
+
+"=== supertab =================================================================
+
+"let g:SuperTabDefaultCompletionType = "context"
 
 "=== general ==================================================================
 
@@ -99,19 +111,21 @@ set smartcase                   " if search contains mixed case, do a case
 
 let mapleader = ","             " use <comma> as leader
 
-"noremap           <leader>f <Esc>:CommandT<CR>
-"noremap           <leader>F <Esc>:CommandTFlush<CR>
-"noremap           <leader>m <Esc>:CommandTBuffer<CR>
-noremap           <leader>f <Esc>:CtrlP<CR>
-noremap           <leader>m <Esc>:CtrlPBuffer<CR>
+map <leader>t  :tabnew<CR>
+map <leader>n  :tabnext<CR>
+map <leader>b  :tabprevious<CR>
+map <leader>w  :tabclose<CR>
 
-map               <leader>t  :tabnew<CR>
-map               <leader>n  :tabnext<CR>
-map               <leader>b  :tabprevious<CR>
-map               <leader>w  :tabclose<CR>
-
-noremap           <leader>dd :call ToggleMouse()<CR>
-noremap           <leader>dc :set paste<CR>
+"nnoremap <leader>f <Esc>:CommandT<CR>
+"nnoremap <leader>F <Esc>:CommandTFlush<CR>
+"nnoremap <leader>m <Esc>:CommandTBuffer<CR>
+nnoremap <leader>f <Esc>:CtrlP<CR>
+nnoremap <leader>m <Esc>:CtrlPBuffer<CR>
+nnoremap <leader>dd :call ToggleMouse()<CR>
+nnoremap <leader>dc :set paste<CR>
+nnoremap j gj
+nnoremap k gk
+inoremap jj <ESC>
 
 " w!! for sudo write
 cmap w!! w !sudo tee % >/dev/null
@@ -134,12 +148,12 @@ au BufNewFile,BufRead *.jinja2 set filetype=html
 
 "=== extra ====================================================================
 
+" Show trailing whitepace and spaces before a tab
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")|execute("normal `\"")|endif
-
-" Command-T
-let g:CommandTMaxFiles=20000
-let g:CommandTMaxCachedDirectories=100
 
 " The PC is fast enough, do syntax highlight syncing from start
 autocmd BufEnter * :syntax sync fromstart
