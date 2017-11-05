@@ -14,25 +14,22 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 " fugitive
 Bundle 'tpope/vim-fugitive'
-" command-t
-"Bundle 'wincent/Command-T'
 " ctrlp
 Bundle 'kien/ctrlp.vim'
 " nerdcommenter
 Bundle 'scrooloose/nerdcommenter'
 " supertab
 Bundle 'ervandew/supertab'
-" powerline
-Bundle 'Lokaltog/vim-powerline'
+" airline
+Bundle 'bling/vim-airline'
 " latex-box
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
+" json
+Bundle 'elzr/vim-json'
+" reasonml
+Bundle 'reasonml/vim-reason-loader'
 
 "=== plugin settings ==========================================================
-
-"=== command-t ================================================================
-
-"let g:CommandTMaxFiles=20000
-"let g:CommandTMaxCachedDirectories=100
 
 "=== ctrlp ====================================================================
 
@@ -148,6 +145,7 @@ endfunction
 
 "=== filetypes ================================================================
 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 au BufNewFile,BufRead *.jinja2 set filetype=html
@@ -155,6 +153,7 @@ au BufNewFile,BufRead *.jinja2 set filetype=html
 "=== extra ====================================================================
 
 " Show trailing whitepace and spaces before a tab
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
