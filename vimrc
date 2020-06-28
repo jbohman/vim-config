@@ -28,6 +28,14 @@ Bundle 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'elzr/vim-json'
 " reasonml
 Bundle 'reasonml/vim-reason-loader'
+" rust
+Bundle 'rust-lang/rust.vim'
+
+Bundle 'leafgarland/typescript-vim'
+
+Bundle 'pangloss/vim-javascript'
+Bundle 'maxmellon/vim-jsx-pretty'
+Bundle 'udalov/kotlin-vim'
 
 "=== plugin settings ==========================================================
 
@@ -55,6 +63,9 @@ set modeline                    " file specific options
 set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
 set mouse=a                     " mouse gestures
+if has('mouse_sgr')
+    set ttymouse=sgr
+endif
 set encoding=utf-8              " set internal encoding
 set scrolloff=4                 " scroll offset
 set visualbell                  " use visual bell
@@ -148,6 +159,8 @@ endfunction
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
+
 au BufNewFile,BufRead *.jinja2 set filetype=html
 
 "=== extra ====================================================================
@@ -156,6 +169,7 @@ au BufNewFile,BufRead *.jinja2 set filetype=html
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")|execute("normal `\"")|endif
